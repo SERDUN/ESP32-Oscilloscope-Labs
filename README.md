@@ -1,32 +1,64 @@
-# _Sample project_
+# 📘 ESP32 Oscilloscope Labs — Навички та Практика
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+Цей репозиторій — практична збірка задач для роботи з **сигналами на ESP32**, які можна візуалізувати за допомогою **осцилографа**. Кожна задача — це не просто код, а реальний сценарій, який тренує критичні навички Embedded-інженера.
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+---
 
+## 📚 Необхідні знання перед стартом
 
+### ✅ Програмування на C
+- Розуміння конструкцій: `while`, `for`, `if`, `switch`
+- Робота зі змінними, масивами
+- Базове уявлення про `#include`, `.h/.c` файли
 
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
+### ✅ Робота з ESP32 (ESP-IDF)
+- Як створити проєкт (`idf.py create project`)
+- Як компілювати та прошивати (`idf.py build flash`)
+- Як запускати монітор (`idf.py monitor`)
+- Як працювати з `app_main()`
 
-## Example folder contents
+### ✅ GPIO і сигнали
+- Як встановити GPIO в режим виходу
+- Як подавати сигнал: `gpio_set_level`, `gpio_set_direction`
+- Як задавати затримки: `vTaskDelay`, `esp_rom_delay_us`
 
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
+### ✅ FreeRTOS основи
+- Розуміння задач (`Task`)
+- Неблокуючі затримки (`vTaskDelay`)
+- Пріоритети (базово)
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
+### ✅ PWM та DAC
+- Генерація широтно-імпульсних сигналів через LEDC
+- Вивід аналогового сигналу через DAC (`dac_output_voltage`)
 
-Below is short explanation of remaining files in the project folder.
+### ✅ Основи осцилографа
+- Як підключити щуп (GPIO ↔ GND)
+- Як виставити масштаб по часу/напрузі
+- Як зчитувати форму сигналу, частоту, амплітуду
+- Як тригеритись по фронту
 
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+---
+
+## 🧪 Таблиця задач
+
+| №  | Назва задачі                  | Суть задачі                                            | Реальний сценарій |
+|----|-------------------------------|--------------------------------------------------------|-------------------|
+| 1  | **Blink-Scope**               | Миготіння з точною частотою (1–10 Гц)                  | Watchdog, alive-перевірка |
+| 2  | **PWM Visualizer**            | PWM із різною шпаруватістю                             | Яскравість LED, двигуни |
+| 3  | **DAC Sine Wave Generator**   | Синусоїда через DAC                                    | Генератор тест-сигналу |
+| 4  | **PWM-to-Analog RC Filter**   | PWM → фільтр → аналоговий рівень                       | Управління аналоговим навантаженням |
+| 5  | **Short Pulse Generator**     | Точні короткі імпульси                                 | Строб, ультразвук, лазер |
+| 6  | **Burst Pulse Packet**        | Пачка імпульсів з паузами                              | RF модуляція, IR-сигнал |
+| 7  | **Manual UART Frame**         | UART 9600 бод вручну                                   | Сумісність із low-level пристроєм |
+| 8  | **SPI Clock Simulation**      | CLK + MOSI вручну                                      | Тестовий SPI вивід |
+| 9  | **Execution Time Marker**     | HIGH до/після блоку — замір тривалості                 | Профілювання функцій |
+| 10 | **AM Sine Envelope**          | Синусоїда зі згасанням амплітуди                       | Моделювання звукового сигналу |
+
+---
+
+## 🧭 Рекомендований порядок
+1. Почни з задач 1–2 (GPIO, PWM)
+2. Перейди до DAC та фільтрів (3–4)
+3. Попрацюй з мікрозатримками (5–6)
+4. Пограйся з комунікаціями (7–8)
+5. Заверши профілюванням і генерацією звуку (9–10)
